@@ -1,0 +1,386 @@
+/* Battle Arena Styles */
+.battle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    margin: 20px 0;
+    position: relative;
+    min-height: 300px;
+}
+
+.player-area, .enemy-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.vs-indicator {
+    font-size: 2em;
+    font-weight: bold;
+    color: #f39c12;
+    text-shadow: 0 0 10px rgba(243, 156, 18, 0.7);
+    padding: 0 15px;
+}
+
+/* Character displays */
+.player-character, .enemy-character {
+    position: relative;
+    width: 150px;
+    height: 200px;
+}
+
+.character-container, .enemy-container {
+    position: relative;
+    width: 100px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.enemy-container {
+    cursor: pointer; /* Make enemy clickable */
+    user-select: none; /* Prevent selection when clicking rapidly */
+}
+
+.char-layer, .enemy-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Health bars */
+.health-bar {
+    width: 100%;
+    height: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.health-fill {
+    height: 100%;
+    background-color: #27ae60;
+    width: 100%;
+    transition: width 0.3s;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 100%);
+}
+
+/* Animation classes */
+.attack-animation {
+    animation: attack-bounce 0.5s;
+}
+
+.damaged-animation {
+    animation: damage-flash 0.5s;
+}
+
+.damage-number {
+    position: absolute;
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 18px;
+    animation: float-up 1s forwards;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.heal-number {
+    position: absolute;
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 18px;
+    animation: float-up 1s forwards;
+    pointer-events: none;
+    z-index: 100;
+}
+
+@keyframes attack-bounce {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(20px); }
+    50% { transform: translateX(0); }
+    75% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes damage-flash {
+    0% { filter: brightness(1); }
+    25% { filter: brightness(1.5); }
+    50% { filter: brightness(1); }
+    75% { filter: brightness(1.5); }
+    100% { filter: brightness(1); }
+}
+
+@keyframes float-up {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-30px); }
+}
+
+/* Enemy types */
+.enemy-slime {
+    background-color: #3498db;
+    border-radius: 50% 50% 30% 30%;
+}
+
+.enemy-goblin {
+    background-color: #27ae60;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.enemy-ghost {
+    background-color: rgba(189, 195, 199, 0.7);
+    clip-path: polygon(0% 50%, 20% 0%, 50% 25%, 80% 0%, 100% 50%, 80% 100%, 50% 90%, 20% 100%);
+}
+
+.enemy-dragon {
+    background-color: #e74c3c;
+    clip-path: polygon(0% 20%, 40% 0%, 60% 0%, 100% 20%, 80% 80%, 50% 100%, 20% 80%);
+}
+
+.enemy-boss {
+    background-color: #8e44ad;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+}
+
+/* Monster specific styles */
+.monster-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.monster-image:active {
+    transform: scale(0.95);
+}
+
+.monster-hit-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 5;
+}
+
+.enemy-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Enhanced healing orb styles */
+.healing-orb {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #27ae60;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation: pulse 1s infinite;
+    z-index: 20;
+    user-select: none;
+    box-shadow: 0 0 10px rgba(39, 174, 96, 0.7), 0 0 20px rgba(39, 174, 96, 0.4);
+    border: 2px solid white;
+}
+
+.healing-orb:hover {
+    transform: scale(1.1);
+    background-color: #2ecc71;
+}
+
+/* Click count for monster damage animation */
+.click-counter {
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    z-index: 5;
+}
+
+/* Damage animation */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+.shake-animation {
+    animation: shake 0.3s linear;
+}
+
+/* Battle rewards styling */
+.battle-rewards {
+    margin-top: 15px;
+}
+
+.reward-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.reward-icon {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.reward-name {
+    flex: 1;
+}
+
+.reward-value {
+    font-weight: bold;
+    color: #f1c40f;
+}
+
+/* Battle Start Overlay */
+.battle-start-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 70px);
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.player-avatar {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.player-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.press-to-fight {
+    font-size: 2rem;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    letter-spacing: 2px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+}
+
+/* Battle Quiz */
+.battle-quiz-container {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.battle-quiz-question {
+    font-size: 1.2em;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(78, 154, 241, 0.2);
+    border-radius: 8px;
+}
+
+.battle-quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.battle-quiz-option {
+    background-color: rgba(78, 154, 241, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+
+.battle-quiz-option:hover {
+    background-color: rgba(78, 154, 241, 0.5);
+    transform: translateY(-2px);
+}
+
+.battle-quiz-option.correct {
+    background-color: rgba(46, 204, 113, 0.7);
+}
+
+.battle-quiz-option.incorrect {
+    background-color: rgba(231, 76, 60, 0.7);
+}
+
+.result-display {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1em;
+    color: #fff;
+    min-height: 20px;
+}

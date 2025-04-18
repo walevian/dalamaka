@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battle - Brain Training Game</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="battle.css">
+  <link rel="stylesheet" href="character.css">
+</head>
+<body class="colorful-theme">
+  <div class="container">
+    <!-- Icon bar -->
+    <div class="icon-bar">
+      <div class="icon icon-games" data-action="games"></div>
+      <div class="icon icon-stats" data-action="stats"></div>
+      <div class="icon icon-inventory" data-action="inventory" style="display: none;"></div>
+      <div class="icon icon-room" data-action="room" style="display: none;"></div>
+      <div class="icon icon-battle" data-action="battle"></div>
+    </div>
+
+    <h1>⚔️ Battle Arena</h1>
+    
+    <!-- Battle Start Overlay -->
+    <div id="battle-start-overlay" class="battle-start-overlay">
+      <div class="player-avatar">
+        <img src="m11.png" alt="Player Character">
+      </div>
+      <div class="press-to-fight">PRESS TO FIGHT</div>
+    </div>
+    
+    <!-- Battle Quiz Section -->
+    <div id="battle-quiz-container" class="battle-quiz-container" style="display: none;">
+      <h3>Answer correctly for battle advantage!</h3>
+      <div id="battle-quiz-question" class="battle-quiz-question"></div>
+      <div id="battle-quiz-options" class="battle-quiz-options"></div>
+      <div id="quiz-result" class="result-display"></div>
+    </div>
+    
+    <!-- Battle Arena Section -->
+    <div id="battle-container" class="battle-container" style="display: none;">
+      <div class="player-area">
+        <div id="player-character" class="character-container">
+          <img src="m11.png" alt="Player Character" class="character-image">
+        </div>
+        <div class="health-bar">
+          <div id="player-health" class="health-fill"></div>
+        </div>
+      </div>
+      
+      <div class="vs-indicator">VS</div>
+      
+      <div class="enemy-area">
+        <div id="enemy-character" class="enemy-container">
+          <img src="monster.png" alt="Monster" class="monster-image">
+          <video id="monster-hit-animation" class="monster-hit-animation" style="display: none;">
+            <source src="monster got damage.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div>
+          <div id="enemy-name">Monster</div>
+          <div id="enemy-level">Level: 3</div>
+          <div id="enemy-type">Type: Beast</div>
+        </div>
+        <div class="health-bar">
+          <div id="enemy-health" class="health-fill"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="healing-orb" class="healing-orb" style="display: none;">+</div>
+    
+    <div id="battle-messages" class="battle-messages"></div>
+    
+    <div class="button-container">
+      <button id="back-to-menu" class="back-button">Back to Menu</button>
+    </div>
+  </div>
+
+  <script src="quiz_questions.js"></script>
+  <script src="battle_quiz.js"></script>
+  <script src="battle.js"></script>
+</body>
+</html>
